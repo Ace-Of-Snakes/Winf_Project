@@ -61,7 +61,7 @@ def main():
     # accept the cookies
     acceptCookies()
     # wait for the page to load
-    time.sleep(10)
+    time.sleep(100)
     # find the username and password fields
     # username = driver.find_element_by_name('username')
     # password = driver.find_element_by_name('password')
