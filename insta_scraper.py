@@ -104,6 +104,7 @@ def iteration(number_of_posts: int):
     index,restbetrag = indexer(number_of_posts)
     print(index,restbetrag)
     data =  {}
+    index = int(index)
     if int(restbetrag) == 0:
         for i in range(index):
             if  i <= index:
@@ -123,8 +124,9 @@ def iteration(number_of_posts: int):
 
 def scrape_post_for_data(i,j):
     global client_username, button_exists
+    i = int(i)
+    j = int(j)
     print(i+1,j+1)
-
     if i == 0 and j == 0:
         post_xpath= f"/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[3]/article/div[1]/div/div[{int(i+1)}]/div[{int(j+1)}]/a/div"
         # click on first post
@@ -180,17 +182,21 @@ def get_number_of_posts()->int:
         time.sleep(10)
         # number_regex = re.search(r'''\d+ Follower, \d+ gefolgt, \d+ Beitr''', html)
         # numbers = re.findall(r'\d+', number_regex.group(0))
-        number_of_posts = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/ul/li[1]/div/span/span[1]').text
+        number_of_posts = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/ul/li[1]/div/span/span').text
+        print(f'Number of posts: {number_of_posts}')
         number_of_followers = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/ul/li[2]/a/div/span').text
+        print(f'Number of followers: {number_of_followers}')
         number_of_following = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/ul/li[3]/a/div/span').text
-        biographie = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/div[3]/h1').text
+        print(f'Number of following: {number_of_following}')
+        try:
+            biographie = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/div[3]/h1').text
+            print(f'Biographie: {biographie}')
+        except Exception as e:
+            # print(e)
+            biographie = "Keine Biographie"
         # number_of_followers = int(numbers[0])
         # number_of_following = int(numbers[1])
         # number_of_posts = int(numbers[2])
-        print(f'Number of followers: {number_of_followers}')
-        print(f'Number of following: {number_of_following}')
-        print(f'Number of posts: {number_of_posts}')
-        print(f'Biographie: {biographie}')
         
         json_profile["username "] = client_username
         json_profile["biographie "] = biographie
@@ -208,8 +214,9 @@ def main():
     # start the session
     # login
     login()
+    time.sleep(1)
     # open the url
-    client_username = 'jonasroeber'
+    client_username = 'amjdzed'
     driver.get(f'https://www.instagram.com/{client_username}/')
 
     # wait for the page to load
@@ -220,7 +227,7 @@ def main():
     print(data)
     # put data into json
     json_profile["posts"] = data
-    with open('profile.json', 'w') as f:
+    with open(f'{client_username}.json', 'w') as f:
         json.dump(json_profile, f)
     # close the browser
     # wait for the page to load
