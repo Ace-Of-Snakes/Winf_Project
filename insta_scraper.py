@@ -59,16 +59,6 @@ def acceptCookies():
     except TimeoutException:
         print('No cookies to accept')
 
-def dump_cookies_pickle():
-    '''Dumps the cookies to a pickle file'''
-    pickle.dump(driver.get_cookies(), open("cookies.pkl", "wb"))
-
-def load_cookies_pickle():
-    '''Loads the cookies from a pickle file'''
-    cookies = pickle.load(open("cookies.pkl", "rb"))
-    for cookie in cookies:
-        driver.add_cookie(cookie)
-
 def login()->None:
     '''Logins to the account'''
     startSession()
@@ -125,6 +115,7 @@ def iteration(number_of_posts: int):
     return data
 
 def scrape_post_for_data(i,j):
+    """Scrapes the post for data and returns the data as a dictionary containing description, likes, comments, hashtags and mentions"""
     global client_username, button_exists
     i = int(i)
     j = int(j)
@@ -154,7 +145,6 @@ def scrape_post_for_data(i,j):
         button_exists = True
 
     time.sleep(3)
-    kommentar_xpath = "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul"
     like_xpath= "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[2]/div/div/div/a/div/span"
     description_xpath = "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/div/li/div/div/div[2]/div[1]/h1"
     def return_username(index):
@@ -162,9 +152,6 @@ def scrape_post_for_data(i,j):
 
     def return_comment(index):
         return f"/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[{index}]/div/li/div/div/div[2]/div[1]/span"
-    # close_button= "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div/div"
-    # /html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[1]/div/li/div/div/div[2]/h3/div/div/span/a
-    # /html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[2]/div/li/div/div/div[2]/h3/div/div/span/a
     try:
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, description_xpath)))
         # get text of xpath
@@ -187,25 +174,11 @@ def scrape_post_for_data(i,j):
                 all_comms_checked = True
                 # print(e)
                 pass
-        # text_children = text_element.find_elements(By.XPATH, ".//*")
-        # text = ""
-        # for child in text_children:
-        #     try:
-        #         text += child.text
-        #     except Exception:
-        #         pass
-        # text = driver.find_element(By.XPATH, kommentar_xpath).text
+
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, like_xpath)))
         # get number of likes
         likes = int(driver.find_element(By.XPATH, like_xpath).text)
-        # try:
-        #     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, close_button)))
-        #     # close post
-        #     driver.find_element(By.XPATH, close_button).click()
-        # except Exception as e:
-        #     driver.get(f'https://www.instagram.com/{client_username}/')
 
-        # print (f"Beitrag {i,j} mit {likes} likes :\n{text}")
         time.sleep(2)
         return_dict= {"likes":likes, "text":text}
         print(return_dict)
@@ -213,74 +186,61 @@ def scrape_post_for_data(i,j):
     except Exception as e:
         print(e)
         return f"Beitrag {i,j} hat nicht geladen"
-# /html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/div/li/div/div/div[2]/div[1]/h1
-# /html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[1]/div/li/div/div/div[2]/div[1]/span/text()
-# /html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[2]/div/li/div/div/div[2]/div[1]/span
-# /html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[2]/li/ul/div/li/div/div/div[2]/div[1]/span/text()
-# /html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[3]/div/li/div/div/div[2]/div[1]/span
-# /html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[4]/div/li/div/div/div[2]/div[1]/span
+
 def get_number_of_posts()->int:
     '''Returns the number of posts'''
     try:
-        # html = driver.page_source
         time.sleep(10)
-        # number_regex = re.search(r'''\d+ Follower, \d+ gefolgt, \d+ Beitr''', html)
-        # numbers = re.findall(r'\d+', number_regex.group(0))
+
+        # get number of posts through xpath
         number_of_posts = int(driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/ul/li[1]/div/span/span').text.strip())
         print(f'Number of posts: {number_of_posts}')
+        
+        # get number of followers through xpath
         number_of_followers = int(driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/ul/li[2]/a/div/span').text.strip())
         print(f'Number of followers: {number_of_followers}')
+        
+        # get number of following through xpath
         number_of_following = int(driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/ul/li[3]/a/div/span').text.strip())
         print(f'Number of following: {number_of_following}')
-        # click on the follower button
-        # driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/ul/li[2]/a').click()
-        # time.sleep(2)
-        
-        # follower_list = []
-        # for i in range(number_of_followers):
-        #     follower = driver.find_element(By.XPATH,f"/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[2]/div[1]/div/div[{i+1}]").text
-        #     follower_list.append(follower)
-        # print(follower_list)
 
-        # driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/button').click()
+        # get biographie through xpath
         try:
             biographie = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/div[3]/h1').text
             print(f'Biographie: {biographie}')
         except Exception as e:
             # print(e)
+            # if it doesnt work, set biographie to "Keine Biographie"
             biographie = "Keine Biographie"
-        # number_of_followers = int(numbers[0])
-        # number_of_following = int(numbers[1])
-        # number_of_posts = int(numbers[2])
         
+        # put data into json format
         json_profile["username"] = client_username
         json_profile["biographie"] = biographie
         json_profile["number_of_followers"] = number_of_followers
         json_profile["number_of_following"] = number_of_following
-        # json_profile["followers"] = follower_list
         json_profile["number_of_posts"] = number_of_posts
 
         return number_of_posts
+    
     except TimeoutException as e:
         print('Number of posts not found')
 
 def main():
     global client_username, driver
     '''Main function'''
-    # start the session
-    # login
     login()
     time.sleep(1)
+    
     # open the url
     client_username = 'jonasroeber'
     driver.get(f'https://www.instagram.com/{client_username}/')
 
-    # wait for the page to load
     # get the number of posts
     number_of_posts = get_number_of_posts()
 
     data = iteration(number_of_posts)
-    print(data)
+    # print(data)
+
     # put data into json
     json_profile["posts"] = data
     with open(f'{client_username}.json', 'w') as f:
@@ -288,12 +248,6 @@ def main():
     # close the browser
     # wait for the page to load
     time.sleep(10)
-    # find the username and password fields
-    # username = driver.find_element_by_name('username')
-    # password = driver.find_element_by_name('password')
-    # # enter the username and password
-    # username.send_keys('your_username')
-    # password.send_keys('your_password')
 # test
 if __name__ == '__main__':
     main()
