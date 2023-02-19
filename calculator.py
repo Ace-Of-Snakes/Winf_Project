@@ -14,7 +14,7 @@ followers = data["number_of_followers"]
 post = data["posts"]
 keys = post.keys()
 
-def calculate_sentiment(emoji_dict):
+def calculate_emoji_sentiment(emoji_dict):
     sentiment= [0,0,0] #negative, neutral, positive
     for emoji in emoji_dict.keys():
         for i in range(len(df)):
@@ -73,7 +73,7 @@ print(f"""{reach_list},{len(reach_list)}""")
 sorted_hashtags = sorted(hashtag_dict.items(), key=lambda x: x[1], reverse=True)
 sorted_words = sorted(word_dict.items(), key=lambda x: x[1], reverse=True)
 sorted_emojis = sorted(emoji_dict.items(), key=lambda x: x[1], reverse=True)
-print(calculate_sentiment(emoji_dict))
+print(calculate_emoji_sentiment(emoji_dict))
 # print(sorted_hashtags)
 # print(sorted_words)
 # print(sorted_emojis)
@@ -83,5 +83,7 @@ plt.plot(np.linspace(0,len(post), len(post)), np.ones(len(post))*(np.sum(engagem
 plt.stem(list(reversed(engagement_ratios)))
 # pie chart of sentiment values
 plt.figure()
-plt.pie(calculate_sentiment(emoji_dict), labels=["negative", "neutral", "positive"], autopct='%1.1f%%')
+explode = (0,0.1,0.2)
+colors = ["#bc5090","#ffa600","#003f5c"]
+plt.pie(calculate_emoji_sentiment(emoji_dict), labels=["negative", "neutral", "positive"], autopct='%1.1f%%', explode=explode, startangle=90, colors=colors)
 plt.show()
