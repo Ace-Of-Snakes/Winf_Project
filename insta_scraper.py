@@ -18,11 +18,11 @@ import numpy as np
 # used for standard options
 button_exists = False
 json_profile = {
-    "username ": "",
-    "biographie ": "",
-    "number_of_followers ": "",
-    "number_of_following ": "",
-    "number_of_posts ": "",
+    "username": "",
+    "biographie": "",
+    "number_of_followers": "",
+    "number_of_following": "",
+    "number_of_posts": "",
     "posts": {}
 }
 def getOptions()->webdriver.chrome.options:
@@ -47,6 +47,8 @@ def startSession()->webdriver:
         ChromeDriverManager().install()), options=getOptions())
     # initializes the user agent
     # driver.execute_script("return navigator.userAgent")
+    driver.set_window_position(-1000, 0)
+    driver.maximize_window()
     return driver
 
 def acceptCookies():
@@ -154,11 +156,45 @@ def scrape_post_for_data(i,j):
     time.sleep(3)
     kommentar_xpath = "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul"
     like_xpath= "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[2]/div/div/div/a/div/span"
+    description_xpath = "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/div/li/div/div/div[2]/div[1]/h1"
+    def return_username(index):
+        return f"/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[{index}]/div/li/div/div/div[2]/h3/div/div/div/a"
+
+    def return_comment(index):
+        return f"/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[{index}]/div/li/div/div/div[2]/div[1]/span"
     # close_button= "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div/div"
+    # /html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[1]/div/li/div/div/div[2]/h3/div/div/span/a
+    # /html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[2]/div/li/div/div/div[2]/h3/div/div/span/a
     try:
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, kommentar_xpath)))
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, description_xpath)))
         # get text of xpath
-        text = driver.find_element(By.XPATH, kommentar_xpath).text
+        # text_element = driver.find_element(By.XPATH, kommentar_xpath)
+        text ={}
+        text["description"] = driver.find_element(By.XPATH, description_xpath).text
+        text["comments"] = {}
+        comm_number = 1
+        time.sleep(3)
+        all_comms_checked = False
+        while all_comms_checked == False:
+            try:
+                username = driver.find_element(By.XPATH,return_username(comm_number)).text
+                # print(username)
+                comment = driver.find_element(By.XPATH, return_comment(comm_number)).text
+                # print(comment)
+                text["comments"][username] = comment
+                comm_number += 1
+            except Exception as e:
+                all_comms_checked = True
+                # print(e)
+                pass
+        # text_children = text_element.find_elements(By.XPATH, ".//*")
+        # text = ""
+        # for child in text_children:
+        #     try:
+        #         text += child.text
+        #     except Exception:
+        #         pass
+        # text = driver.find_element(By.XPATH, kommentar_xpath).text
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, like_xpath)))
         # get number of likes
         likes = driver.find_element(By.XPATH, like_xpath).text
@@ -171,11 +207,18 @@ def scrape_post_for_data(i,j):
 
         # print (f"Beitrag {i,j} mit {likes} likes :\n{text}")
         time.sleep(2)
-        return f"Beitrag {i,j} mit {likes} likes :\n{text}"
+        return_dict= {"likes":likes, "text":text}
+        print(return_dict)
+        return return_dict
     except Exception as e:
         print(e)
         return f"Beitrag {i,j} hat nicht geladen"
-
+# /html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/div/li/div/div/div[2]/div[1]/h1
+# /html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[1]/div/li/div/div/div[2]/div[1]/span/text()
+# /html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[2]/div/li/div/div/div[2]/div[1]/span
+# /html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[2]/li/ul/div/li/div/div/div[2]/div[1]/span/text()
+# /html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[3]/div/li/div/div/div[2]/div[1]/span
+# /html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[4]/div/li/div/div/div[2]/div[1]/span
 def get_number_of_posts()->int:
     '''Returns the number of posts'''
     try:
