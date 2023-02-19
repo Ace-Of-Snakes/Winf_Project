@@ -197,7 +197,7 @@ def scrape_post_for_data(i,j):
         # text = driver.find_element(By.XPATH, kommentar_xpath).text
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, like_xpath)))
         # get number of likes
-        likes = driver.find_element(By.XPATH, like_xpath).text
+        likes = int(driver.find_element(By.XPATH, like_xpath).text)
         # try:
         #     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, close_button)))
         #     # close post

@@ -11,7 +11,7 @@ post = data["posts"]
 keys = post.keys()
 
 def get_reach_engagement(post, followers):
-    number_of_likes = re.search(r"mit \d+ likes", post)
+    number_of_likes = int(post["likes"])
     reach = int((re.sub(r"(?i)[a-z]", "", number_of_likes.group(0))).strip())
     engagement_ratio = reach/followers
     return reach, engagement_ratio
