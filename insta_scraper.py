@@ -226,12 +226,23 @@ def get_number_of_posts()->int:
         time.sleep(10)
         # number_regex = re.search(r'''\d+ Follower, \d+ gefolgt, \d+ Beitr''', html)
         # numbers = re.findall(r'\d+', number_regex.group(0))
-        number_of_posts = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/ul/li[1]/div/span/span').text
+        number_of_posts = int(driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/ul/li[1]/div/span/span').text.strip())
         print(f'Number of posts: {number_of_posts}')
-        number_of_followers = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/ul/li[2]/a/div/span').text
+        number_of_followers = int(driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/ul/li[2]/a/div/span').text.strip())
         print(f'Number of followers: {number_of_followers}')
-        number_of_following = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/ul/li[3]/a/div/span').text
+        number_of_following = int(driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/ul/li[3]/a/div/span').text.strip())
         print(f'Number of following: {number_of_following}')
+        # click on the follower button
+        # driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/ul/li[2]/a').click()
+        # time.sleep(2)
+        
+        # follower_list = []
+        # for i in range(number_of_followers):
+        #     follower = driver.find_element(By.XPATH,f"/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[2]/div[1]/div/div[{i+1}]").text
+        #     follower_list.append(follower)
+        # print(follower_list)
+
+        # driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/button').click()
         try:
             biographie = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/div[3]/h1').text
             print(f'Biographie: {biographie}')
@@ -246,6 +257,7 @@ def get_number_of_posts()->int:
         json_profile["biographie"] = biographie
         json_profile["number_of_followers"] = number_of_followers
         json_profile["number_of_following"] = number_of_following
+        # json_profile["followers"] = follower_list
         json_profile["number_of_posts"] = number_of_posts
 
         return number_of_posts
