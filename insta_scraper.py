@@ -127,6 +127,14 @@ def scrape_post_for_data(i,j):
     i = int(i)
     j = int(j)
     print(i+1,j+1)
+    if button_exists:
+        try:
+            next_button = "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, next_button)))
+            driver.find_element(By.XPATH, next_button).click()
+        except Exception:
+            return
+
     if i == 0 and j == 0:
         post_xpath= f"/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[3]/article/div[1]/div/div[{int(i+1)}]/div[{int(j+1)}]/a/div"
         # click on first post
@@ -143,13 +151,6 @@ def scrape_post_for_data(i,j):
             print("No next button found")
         button_exists = True
 
-    if button_exists:
-        try:
-            next_button = "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"
-            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, next_button)))
-            driver.find_element(By.XPATH, next_button).click()
-        except Exception:
-            return
     time.sleep(3)
     kommentar_xpath = "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul"
     like_xpath= "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[2]/div/div/div/a/div/span"
@@ -198,11 +199,11 @@ def get_number_of_posts()->int:
         # number_of_following = int(numbers[1])
         # number_of_posts = int(numbers[2])
         
-        json_profile["username "] = client_username
-        json_profile["biographie "] = biographie
-        json_profile["number_of_followers "] = number_of_followers
-        json_profile["number_of_following "] = number_of_following
-        json_profile["number_of_posts "] = number_of_posts
+        json_profile["username"] = client_username
+        json_profile["biographie"] = biographie
+        json_profile["number_of_followers"] = number_of_followers
+        json_profile["number_of_following"] = number_of_following
+        json_profile["number_of_posts"] = number_of_posts
 
         return number_of_posts
     except TimeoutException as e:
