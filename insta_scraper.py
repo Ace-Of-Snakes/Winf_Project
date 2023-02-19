@@ -85,7 +85,7 @@ def login()->None:
     #     (By.XPATH, '//button[contains(text(), "Informationen speichern")]'))).click()
     
     # dump_cookies_pickle()
-    time.sleep(4)
+    time.sleep(8)
 
     return driver
 
@@ -216,7 +216,7 @@ def main():
     login()
     time.sleep(1)
     # open the url
-    client_username = 'amjdzed'
+    client_username = 'jonasroeber'
     driver.get(f'https://www.instagram.com/{client_username}/')
 
     # wait for the page to load
