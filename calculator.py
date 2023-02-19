@@ -4,7 +4,6 @@ import regex as re
 import numpy as np
 import pandas as pd
 
-
 df = pd.read_csv("Emoji_Sentiment_Data_v1.0.csv")
 print(df["Emoji"].values)
 reach_list,engagement_ratios = [],[]
@@ -74,9 +73,9 @@ sorted_hashtags = sorted(hashtag_dict.items(), key=lambda x: x[1], reverse=True)
 sorted_words = sorted(word_dict.items(), key=lambda x: x[1], reverse=True)
 sorted_emojis = sorted(emoji_dict.items(), key=lambda x: x[1], reverse=True)
 print(calculate_emoji_sentiment(emoji_dict))
-# print(sorted_hashtags)
-# print(sorted_words)
-# print(sorted_emojis)
+print(sorted_hashtags)
+print(sorted_words)
+print(sorted_emojis)
 plt.plot(list(reversed(reach_list)))
 plt.figure()
 plt.plot(np.linspace(0,len(post), len(post)), np.ones(len(post))*(np.sum(engagement_ratios)/len(engagement_ratios)), label="average", color="red")
