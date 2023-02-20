@@ -3,6 +3,18 @@ import matplotlib.pyplot as plt
 import regex as re
 import numpy as np
 import pandas as pd
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
+# Load the German version of the VADER sentiment analyzer
+analyzer = SentimentIntensityAnalyzer(lexicon_file="GERVaderLexicon.txt")
+
+# Define a function to get the sentiment score of a word
+def get_sentiment(word, analyzer):
+    try:
+        return analyzer.polarity_scores(word).get('compound', 0.0)
+    except Exception as e:
+        # print(e)
+        return 0.0
 
 df = pd.read_csv("Emoji_Sentiment_Data_v1.0.csv")
 print(df["Emoji"].values)
@@ -69,13 +81,21 @@ for key in keys:
     print(f"""{key}: {reach}""")
 
 print(f"""{reach_list},{len(reach_list)}""")
+
 sorted_hashtags = sorted(hashtag_dict.items(), key=lambda x: x[1], reverse=True)
 sorted_words = sorted(word_dict.items(), key=lambda x: x[1], reverse=True)
 sorted_emojis = sorted(emoji_dict.items(), key=lambda x: x[1], reverse=True)
-print(calculate_emoji_sentiment(emoji_dict))
+
 print(sorted_hashtags)
 print(sorted_words)
 print(sorted_emojis)
+
+emoji_sentiment = calculate_emoji_sentiment(emoji_dict)
+word_sentiment = [get_sentiment(word, analyzer) for word in word_dict.keys()]
+
+
+print(emoji_sentiment)
+print(word_sentiment)
 plt.plot(list(reversed(reach_list)))
 plt.figure()
 plt.plot(np.linspace(0,len(post), len(post)), np.ones(len(post))*(np.sum(engagement_ratios)/len(engagement_ratios)), label="average", color="red")
@@ -84,5 +104,5 @@ plt.stem(list(reversed(engagement_ratios)))
 plt.figure()
 explode = (0,0.1,0.2)
 colors = ["#bc5090","#ffa600","#003f5c"]
-plt.pie(calculate_emoji_sentiment(emoji_dict), labels=["negative", "neutral", "positive"], autopct='%1.1f%%', explode=explode, startangle=90, colors=colors)
+plt.pie(emoji_sentiment, labels=["negative", "neutral", "positive"], autopct='%1.1f%%', explode=explode, startangle=90, colors=colors)
 plt.show()
