@@ -54,7 +54,7 @@ def get_words(post):
     words = re.findall(r"\w+", words)
     return words, emojis
 
-def calculate_statistics(filepath):
+def calculate_statistics(filepath: str, plot:bool=False):
     global df
     # Load the emoji sentiment data
     df = pd.read_csv("ressources/Emoji_Sentiment_Data_v1.0.csv")
@@ -103,9 +103,9 @@ def calculate_statistics(filepath):
     sorted_words = sorted(word_dict.items(), key=lambda x: x[1], reverse=True)
     sorted_emojis = sorted(emoji_dict.items(), key=lambda x: x[1], reverse=True)
 
-    print(sorted_hashtags)
-    print(sorted_words)
-    print(sorted_emojis)
+    # print(sorted_hashtags)
+    # print(sorted_words)
+    # print(sorted_emojis)
 
     emoji_sentiment = calculate_emoji_sentiment(emoji_dict)
     word_sentiment_values = [get_sentiment(word, analyzer) for word in word_dict.keys()]
@@ -113,24 +113,26 @@ def calculate_statistics(filepath):
     word_sentiment_values = [x for x in word_sentiment_values if x != 0]
     word_sentiment = np.sum(word_sentiment_values)/len(word_sentiment_values)
 
-    print(emoji_sentiment)
-    print(word_sentiment)
-    plt.plot(list(reversed(reach_list)))
+    # print(emoji_sentiment)
+    # print(word_sentiment)
+    if plot:
+        plt.plot(list(reversed(reach_list)))
 
-    plt.figure()
-    plt.plot(np.linspace(0,len(posts), len(posts)), np.ones(len(posts))*(np.sum(like_engagement_ratios)/len(like_engagement_ratios)), label="average", color="red")
-    plt.stem(list(reversed(like_engagement_ratios)))
+        plt.figure()
+        plt.plot(np.linspace(0,len(posts), len(posts)), np.ones(len(posts))*(np.sum(like_engagement_ratios)/len(like_engagement_ratios)), label="average", color="red")
+        plt.stem(list(reversed(like_engagement_ratios)))
 
-    plt.figure()
-    plt.plot(np.linspace(0,len(posts), len(posts)), np.ones(len(posts))*(np.sum(comm_engagement_ratios)/len(comm_engagement_ratios)), label="average", color="red")
-    plt.stem(list(reversed(comm_engagement_ratios)))
+        plt.figure()
+        plt.plot(np.linspace(0,len(posts), len(posts)), np.ones(len(posts))*(np.sum(comm_engagement_ratios)/len(comm_engagement_ratios)), label="average", color="red")
+        plt.stem(list(reversed(comm_engagement_ratios)))
 
-    # pie chart of sentiment values
-    plt.figure()
-    explode = (0,0.1,0.2)
-    colors = ["#bc5090","#ffa600","#003f5c"]
-    plt.pie(emoji_sentiment, labels=["negative", "neutral", "positive"], autopct='%1.1f%%', explode=explode, startangle=90, colors=colors)
-    plt.show()
+        # pie chart of sentiment values
+        plt.figure()
+        explode = (0,0.1,0.2)
+        colors = ["#bc5090","#ffa600","#003f5c"]
+        plt.pie(emoji_sentiment, labels=["negative", "neutral", "positive"], autopct='%1.1f%%', explode=explode, startangle=90, colors=colors)
+        plt.show()
 
+    return emoji_sentiment, word_sentiment, list(reversed(like_engagement_ratios)), list(reversed(comm_engagement_ratios))
 if __name__ == "__main__":
-    calculate_statistics("profiles/jonasroeber.json")
+    calculate_statistics("profiles/jonasroeber.json", plot=True)

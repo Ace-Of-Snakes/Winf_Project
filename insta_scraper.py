@@ -231,7 +231,7 @@ def get_number_of_posts()->int:
 
         return number_of_posts
     
-    except TimeoutException as e:
+    except Exception as e:
         print('Number of posts not found')
 
 def main(client):
