@@ -5,3 +5,4 @@ webdriver-manager
 regex
 numpy
 VaderSentiment
+instaloader
