@@ -1,5 +1,5 @@
 import numpy as np
-def scoring_algorithm(sentiment1, sentiment2,values1,values2,top_industries):
+def scoring_algorithm(sentiment1, sentiment2,values1,values2,top_industries, city_val):
 
     # get all variables and reformat them to be used in the algorithm
     emoji_sentiment = sentiment1[2]
@@ -7,13 +7,13 @@ def scoring_algorithm(sentiment1, sentiment2,values1,values2,top_industries):
     average_like_engagement = np.sum(values1)/len(values1)
     average_comm_engagement = np.sum(values2)/len(values2)
     scoring_seed = 0.99254
-
+    
     # print all variables
     print(f"""emoji_sentiment: {emoji_sentiment} word_sentiment: {word_sentiment} average_like_engagement: {average_like_engagement} average_comm_engagement: {average_comm_engagement} top_industries: {top_industries}""")
 
 
     # calculate score after decided formula
-    score1 = (average_like_engagement*3 + average_comm_engagement*50 +emoji_sentiment*2 + word_sentiment*2)/11*10 * scoring_seed
+    score1 = (average_like_engagement*3 + average_comm_engagement*50 +emoji_sentiment*2 + word_sentiment*2)/11*10 * scoring_seed + city_val
 
     # calculate score2
 
