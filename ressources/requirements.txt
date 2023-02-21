@@ -1,0 +1,7 @@
+matplotlib
+pandas
+selenium
+webdriver-manager
+regex
+numpy
+VaderSentiment

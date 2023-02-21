@@ -1,0 +1,3 @@
+Emoji_Sentiment_Data_v1 - > https://kt.ijs.si/data/Emoji_sentiment_ranking/index.html
+GERVaderLexicon - > https://github.com/KarstenAMF/GerVADER/blob/master/GERVaderLexicon.txt
+List_of_cities_in_Germany_by_population_1.csv - > https://en.wikipedia.org/wiki/List_of_cities_in_Germany_by_population

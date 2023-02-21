@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -10,11 +11,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
-import pandas as pd
-import regex as re
 import json
-import pickle
-import numpy as np
 # used for standard options
 button_exists = False
 json_profile = {
@@ -41,7 +38,7 @@ def getOptions()->webdriver.chrome.options:
     return options
 
 def startSession()->webdriver:
-    '''Starts the session and returns the driver'''
+    '''Starts the selenium/google session and returns the driver'''
     global driver
     driver = webdriver.Chrome(service=Service(
         ChromeDriverManager().install()), options=getOptions())
@@ -82,28 +79,36 @@ def login()->None:
     return driver
 
 def indexer(number_of_posts: int):
+    """Returns the number of iterations and the rest of the posts"""
     anzahl_beitraege = int(number_of_posts)
-    print(anzahl_beitraege)
+    # print(anzahl_beitraege)
+    # there are only 3 posts per row on instagram so we start this function to calculate the number of iterations(rows)
+    # the restbetrag is the number of posts that are not in a full row of three
     if anzahl_beitraege % 3 == 0:
         i = int(anzahl_beitraege / 3)
         restbetrag = 0
+
     elif anzahl_beitraege % 3 != 0:
         restbetrag = anzahl_beitraege % 3
         i = (anzahl_beitraege - restbetrag)/3 + 1 
     return i, restbetrag
 
 def iteration(number_of_posts: int):
+    """Returns the data of the posts as a dictionary"""
     index,restbetrag = indexer(number_of_posts)
-    print(index,restbetrag)
+    # print(index,restbetrag)
     data =  {}
     index = int(index)
+    # note: we could also just iterate over the number of posts in a range, but this wouldnt lead to the desired dictionary structure (matrix like)
+
+    # if the restbetrag is 0, the number of posts is a multiple of 3 and we can scrape all posts without any problems
     if int(restbetrag) == 0:
         for i in range(index):
             if  i <= index:
                 for j in range(3):
                     data[f"{i+1},{j+1}"]= scrape_post_for_data(i,j)
 
-
+    # if the restbetrag is not 0, the number of posts is not a multiple of 3 and we have to adjust for the restbetrag in the j range
     if int(restbetrag) != 0:
         for i in range(index):
             if  i != index:
@@ -120,6 +125,8 @@ def scrape_post_for_data(i,j):
     i = int(i)
     j = int(j)
     print(i+1,j+1)
+
+    # this is the condition used for all the posts scraped after the 2nd one, where the xpath has been changed (read other two if statements to understand)
     if button_exists:
         try:
             next_button = "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div[2]/button"
@@ -128,6 +135,7 @@ def scrape_post_for_data(i,j):
         except Exception:
             return
 
+    # if the first post needs to be scrpaer, we first need to open the post
     if i == 0 and j == 0:
         post_xpath= f"/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[3]/article/div[1]/div/div[{int(i+1)}]/div[{int(j+1)}]/a/div"
         # click on first post
@@ -135,6 +143,7 @@ def scrape_post_for_data(i,j):
         driver.find_element(By.XPATH, post_xpath).click()
         print("first condition")
 
+    # after clicking on the enxt button after the first post, the xpath of the next button changes and we need to adjust for that change with the button_exists variable
     if i == 0 and j == 1:
         try:
             next_button = "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"
@@ -225,14 +234,14 @@ def get_number_of_posts()->int:
     except TimeoutException as e:
         print('Number of posts not found')
 
-def main():
+def main(client):
     global client_username, driver
     '''Main function'''
     login()
     time.sleep(1)
     
     # open the url
-    client_username = 'jonasroeber'
+    client_username = client
     driver.get(f'https://www.instagram.com/{client_username}/')
 
     # get the number of posts
@@ -243,11 +252,11 @@ def main():
 
     # put data into json
     json_profile["posts"] = data
-    with open(f'{client_username}.json', 'w') as f:
+    with open(f'profiles/{client_username}.json', 'w') as f:
         json.dump(json_profile, f)
     # close the browser
     # wait for the page to load
     time.sleep(10)
 # test
 if __name__ == '__main__':
-    main()
+    main("jonasroeber")
