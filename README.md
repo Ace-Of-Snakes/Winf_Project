@@ -1,4 +1,4 @@
-# H2 Instagram Scraper and Scoring Software
+Instagram Scraper and Scoring Software
 
 Introduction
 
