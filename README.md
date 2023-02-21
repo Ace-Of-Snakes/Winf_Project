@@ -16,7 +16,7 @@ To use this software, you must have the following installed on your system:
 2. Open the cloned repository in Visual Studio Code.
 3. Open the integrated terminal in Visual Studio Code.
 4. In the terminal, navigate to the root directory of the repository.
-5. Run pip install -r requirements.txt to install all the required packages.
+5. Run `pip install -r requirements.txt` to install all the required packages.
 6. To enable web scraping, install Google Chrome browser on your machine.
 
 ### Usage
