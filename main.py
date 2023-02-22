@@ -12,7 +12,7 @@ if __name__ == '__main__':
     city = 'Hamburg'
 
     #get profile data
-    main(target_account)
+    # main(target_account)
     
     #get city value in reach points
     city_val = evaluate_city(city)
