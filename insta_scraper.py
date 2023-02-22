@@ -26,12 +26,12 @@ def getOptions()->webdriver.chrome.options:
     '''Returns the options for the webdriver'''
     options = webdriver.ChromeOptions()
     options.add_argument('--ignore-certificate-errors')
-    # options.add_argument('--incognito')
-    # options.add_argument('--headless')
+    options.add_argument('--incognito')
+    options.add_argument('--headless')
     # user_ agent is used to simulate a non-headless browser, to avoid access denial
-    # user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
-    # options.add_argument('user-agent={0}'.format(user_agent))
-    # options.add_argument('--no-sandbox')
+    user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
+    options.add_argument('user-agent={0}'.format(user_agent))
+    options.add_argument('--no-sandbox')
     options.add_argument('--log-level=1')
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
     # options.add_argument("--disable-3d-apis")
@@ -43,7 +43,7 @@ def startSession()->webdriver:
     driver = webdriver.Chrome(service=Service(
         ChromeDriverManager().install()), options=getOptions())
     # initializes the user agent
-    # driver.execute_script("return navigator.userAgent")
+    driver.execute_script("return navigator.userAgent")
     driver.set_window_position(-1000, 0)
     driver.maximize_window()
     return driver
@@ -155,6 +155,7 @@ def scrape_post_for_data(i,j):
 
     time.sleep(3)
     like_xpath= "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[2]/div/div/div/a/div/span"
+    aufruf_xpath= "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[2]/div/span/div/span"
     description_xpath = "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/div/li/div/div/div[2]/div[1]/h1"
     def return_username(index):
         return f"/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[{index}]/div/li/div/div/div[2]/h3/div/div/div/a"
@@ -162,11 +163,15 @@ def scrape_post_for_data(i,j):
     def return_comment(index):
         return f"/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/ul[{index}]/div/li/div/div/div[2]/div[1]/span"
     try:
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, description_xpath)))
         # get text of xpath
         # text_element = driver.find_element(By.XPATH, kommentar_xpath)
         text ={}
-        text["description"] = driver.find_element(By.XPATH, description_xpath).text
+        try:
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, description_xpath)))
+            text["description"] = driver.find_element(By.XPATH, description_xpath).text
+        except Exception:
+            text["description"] = ""
+            pass
         text["comments"] = {}
         comm_number = 1
         time.sleep(3)
@@ -183,10 +188,17 @@ def scrape_post_for_data(i,j):
                 all_comms_checked = True
                 # print(e)
                 pass
-
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, like_xpath)))
-        # get number of likes
-        likes = int(driver.find_element(By.XPATH, like_xpath).text)
+        try:
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, like_xpath)))
+            # get number of likes
+            likes = int(driver.find_element(By.XPATH, like_xpath).text)
+        except Exception:
+            try:
+                WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, aufruf_xpath)))
+                likes = int(driver.find_element(By.XPATH, aufruf_xpath).text)
+            except Exception:
+                likes = 0
+                pass
 
         time.sleep(2)
         return_dict= {"likes":likes, "text":text}

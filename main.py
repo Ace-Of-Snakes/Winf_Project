@@ -8,7 +8,7 @@ import json
 if __name__ == '__main__':
     profile = {}
     # some data to test the algorithm
-    target_account = 'jonasroeber'
+    target_account = 'timo.wacke'
     city = 'Hamburg'
 
     #get profile data
