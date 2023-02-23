@@ -1,0 +1,886 @@
+
+h1,h2,h3,h4,h5,h6,p,button,textarea{
+    font-family: 'Inria Sans';
+}
+h1{
+    font-size: 200px;
+    font-weight: 700;
+    line-height: 48px;
+    color: rgb(255, 255, 255);
+}
+body {
+    background-color: rgb(1, 19, 61);
+    height : 100%;
+}
+p {color: rgb(0, 0, 0);}
+header{
+    width: 100%;
+}
+
+.fa {
+padding: 20px;
+font-size: 30px;
+width: 50px;
+text-align: center;
+text-decoration: none;
+margin: 5px 2px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+background: #3B5998;
+color: white;
+position: absolute;
+width: 227px;
+height: 24px;
+left: 320px;
+top: 1750px;
+}
+
+figure img{
+width:100px;
+height: 100px;
+}
+.headerbutton {
+    border: none;
+    border-radius: 105px;
+    background-color: rgb(1, 19, 61);;
+    color: rgb(255, 255, 255);
+    padding: 14px 28px;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    }
+.headerbutton:hover{
+border-radius: 25px;
+border: 2px solid #84cede;
+}
+.home{
+    position:absolute;
+    left:60%;
+}
+.aboutus{
+    position:absolute;
+    left:70%;
+}
+
+.contactus{
+    position:absolute;
+    left:80%;
+}
+/*
+.contactus:active, .contactus:focus
+{
+    border-color: tomato;
+}
+*/
+.login{
+    position:absolute;
+    left:90%;
+   
+}
+
+.login:hover{
+    background-color:  #84cede;
+}
+
+.influencerbutton{
+    position: absolute;
+    width: 277px;
+    height: 57px;
+    left: 6%;
+    top: 651px;
+    border-radius: 105px;
+    opacity:1;
+    background-color:#E7F1FB;
+    color:  rgb(1, 19, 61);
+    font-family: 'Inria Sans';
+    font-size: 140%;
+    font-weight: bold;
+}
+.influencerbutton:hover{
+    border-radius: 25px;
+    border: 2px solid #84cede;
+    color: #84cede;
+}
+
+.brandsbutton{
+    position: absolute;
+    width: 277px;
+    height: 57px;
+    left: 24%;
+    top: 651px;
+    border-radius: 105px;
+    opacity:1;
+    background-color:#E7F1FB;
+    color:  rgb(1, 19, 61);
+    font-family: 'Inria Sans';
+    font-size: 140%;
+    font-weight: bold;
+}
+.brandsbutton:hover{
+    border-radius: 25px;
+    border: 2px solid #84cede;
+    color: #84cede;
+}
+
+#text{
+    position:absolute;
+    border-radius: 10px;
+    height:10px;
+    left:90%;
+    top: 2.5%;
+}
+
+#überschrift{
+position: absolute;
+width: 562px;
+height: 134px;
+left: 20%;
+top: 268px;
+/*font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;*/
+}
+#unterüberschrift{
+position: absolute;
+width: 562px;
+height: 134px;
+left: 21%;
+top: 500px;
+color: white;
+}
+#banner1{
+scroll-snap-align: start;
+position:absolute;
+width: 100%;
+height: 60%;
+left: 0px;
+top: 100%;
+background: #84cede;
+opacity: 1;
+color: #000000;
+margin:0%
+}
+#banner2{
+position: absolute;
+width: 100%;
+height: 40%;
+left: 0px;
+top: 160%;
+background: #FFFFFF;
+}
+#h6{
+    position: absolute;
+    width: 500px;
+    height: 31px;
+    left: 20%;
+    top: 0%;
+    font-family: 'Inria Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 31px;
+
+}
+#p1{
+    position: absolute;
+    width: 296px;
+    height: 48px;
+    left: 20%;
+    top: 19%;
+    font-family: 'Inria Sans';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    
+}
+
+#h5{
+    position: absolute;
+    width: 266px;
+    height: 31px;
+    left: 55%;
+    top: 3.5%;
+    font-family: 'Inria Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 31px;
+}
+
+#p2{
+    position: absolute;
+    width: 325px;
+    height: 50px;
+    left: 55%;
+    top: 19%;
+
+    font-family: 'Inria Sans';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+}
+#cap{
+    
+    position: absolute;
+    width: 296px;
+    height: 48px;
+    left: 22.5%;
+    top: 0%;
+    
+    font-family: 'Inria Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color:white;
+}
+#cc{
+
+    position: absolute;
+    width: 296px;
+    height: 48px;
+    left: 20%;
+    top: 0%;
+    
+    font-family: 'Inria Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color:white;
+}
+#fam{
+
+    position: absolute;
+    width: 296px;
+    height: 48px;
+    left: 25%;
+    top: 0%;
+    
+    font-family: 'Inria Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color:white;
+}
+#rec1{
+    position: absolute;
+    width: 296px;
+    height: 12%;
+    left: 10%;
+    top: 60%;
+    opacity: 1;
+    background: #1D3352;
+    border-radius: 40px;
+}
+#rec2{
+    position: absolute;
+    width: 296px;
+    height: 12%;
+    left: 40%;
+    top: 60%;  
+    opacity: 1;
+    background: #1D3352;
+    border-radius: 40px;
+}
+#rec3{
+    position: absolute;
+    width: 296px;
+    height: 12%;
+    left: 70%;
+    top: 60%;
+    opacity: 1;
+    background: #1D3352;
+    border-radius: 40px;
+}
+#trending{
+    position: absolute;
+    width: 198px;
+    height: 24px;
+    left: 43%;
+    top: 5%;
+    
+    font-family: 'Inria Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 24px;}
+#brandst{
+    position: absolute;
+    width: 227px;
+    height: 24px;
+    left: 20%;
+    top: 20%;
+    
+    font-family: 'Inria Sans';
+    font-style: normal;
+    font-weight: 450;
+    font-size: 25px;
+    line-height: 24px;
+}
+#influencert{
+    position: absolute;
+    width: 125px;
+    height: 24px;
+    left: 70%;
+    top: 20%;
+    
+    font-family: 'Inria Sans';
+    font-style: normal;
+    font-weight: 450;
+    font-size: 25px;
+    line-height: 24px;
+}
+
+#zara{
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    left: 28%;
+    top: 44%;
+}
+#nike{
+    position: absolute;
+    width: 80px;
+    height: 50px;
+    left: 20%;
+    top: 42%;
+
+}
+#rituals{
+    position: absolute;
+    width: 140px;
+    height: 80px;
+    left: 10%;
+    top: 40%;
+    
+}
+#reif{
+    position: absolute;
+    left:60%; 
+    top: 35%; 
+}
+#skincare{
+    position:absolute;
+    left:70%; 
+    top: 35%; 
+}
+#mareninsta{
+    position:absolute;
+    left:80%; 
+    top: 35%; 
+}
+
+#ecl1{
+position: absolute;
+width: 346.11px;
+height: 305.64px;
+left: 89px;
+top: 52.48px;
+border-radius: 100%;
+background: radial-gradient(72.71% 75.23% at 77.47% 91.48%, rgba(11, 35, 85, 0.04) 8.85%, rgba(88, 117, 145, 0.157) 83.33%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+transform: matrix(1, -0.02, 0.02, 1, 0, 0);
+z-index: -1;
+}
+#ecl2{
+position: absolute;
+width: 322.24px;
+height: 312px;
+left: 729.46px;
+top: 210px;
+border-radius: 100%;
+background: radial-gradient(90.2% 90.2% at 67.83% 95.86%, rgba(0, 42, 123, 0.0108) 9.38%, rgba(45, 158, 222, 0.1998) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+z-index: -1;
+}
+
+#ecl3{
+
+position: absolute;
+width: 457.76px;
+height: 428px;
+left: 118.11px;
+top: 496px;
+border-radius: 100%;
+background: radial-gradient(72.71% 75.23% at 77.47% 91.48%, rgba(0, 42, 123, 0.0018) 8.85%, rgba(164, 209, 252, 0.146) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+z-index: -1;
+}
+
+#ecl4{
+position: absolute;
+width: 511.97px;
+height: 476px;
+left: 877.03px;
+top: 617px;
+border-radius: 100%;
+background: radial-gradient(55.04% 55.79% at 64.61% 68.91%, rgba(19, 50, 111, 0.042) 9.37%, rgba(63, 151, 214, 0.128) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+z-index: -1;
+}
+
+#ecl5{
+    position: absolute;
+    width: 321px;
+    height: 312px;
+    left: 485px;
+    top: 1190px;
+    border-radius: 100%;
+    background: radial-gradient(90.2% 90.2% at 67.83% 95.86%, rgba(0, 42, 123, 0.027) 9.38%, rgba(45, 158, 222, 0.1998) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    z-index: -1;
+}
+
+#ecl6{
+    position: absolute;
+    width: 321px;
+    height: 312px;
+    left: 56px;
+    top: 1479px;
+    border-radius: 100%;
+    background: radial-gradient(90.2% 90.2% at 67.83% 95.86%, rgba(0, 42, 123, 0.027) 9.38%, rgba(45, 158, 222, 0.1998) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    z-index: -1;
+}
+
+#ecl7{
+    position: absolute;
+    width: 321px;
+    height: 312px;
+    left: 1011px;
+    top: 1431px;
+    border-radius: 100%;
+    background: radial-gradient(90.2% 90.2% at 67.83% 95.86%, rgba(0, 42, 123, 0.027) 9.38%, rgba(45, 158, 222, 0.1998) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    z-index: -1;
+}
+
+#ecl8{
+position: absolute;
+width: 344.78px;
+height: 305.64px;
+left: 1685px;
+top: 400.48px;
+border-radius: 100%;
+background: radial-gradient(72.71% 75.23% at 77.47% 91.48%, rgba(16, 59, 142, 0) 8.85%, rgba(90, 172, 248, 0.1422) 83.33%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+transform: rotate(-1.41deg);
+}
+
+
+#buttonspanel{
+
+position: absolute;
+width: 700px;
+height: 550px;
+left: -3px;
+top: 300px;
+background: #63ACBD;
+border-radius: 30px;
+}
+#headingib{
+    box-sizing: border-box;
+    position: absolute;
+    width: 484px;
+    height: 94px;
+    left: -91px;
+    top: 138px;
+    border: 1px solid #8DF7FF;
+    border-radius: 74px;
+
+}
+#headinfl{
+    position: absolute;
+    width: 200px;
+    height: 40px;
+    left: 51px;
+    top: 135px;
+    font-family: 'Inria Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 33px;
+    line-height: 40px;
+    /* identical to box height */
+    color: #8DF7FF;
+}
+#headinbr{
+    position: absolute;
+    width: 200px;
+    height: 40px;
+    left: 70px;
+    top: 135px;
+    font-family: 'Inria Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 33px;
+    line-height: 40px;
+    /* identical to box height */
+    color: #8DF7FF;
+}
+
+#topsugges{
+
+    position: absolute;
+    top:0%;
+    font-family: 'Inria Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+}
+
+.grid {
+    display: grid;
+    gap: 80px;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 6.5%;
+
+}
+  
+div > div {
+    padding: 0;
+    background-color: #63ACBD;
+    
+}
+.picbtn{
+border:none;
+background: none;
+height:100px ;
+width:100px ;
+border-radius: 25px;
+color:rgb(255, 255, 255);
+font-weight: 300;
+font-size: larger;
+padding-top: 100px;
+}
+.picbtn:hover{
+
+    border-width: 5px;
+    cursor: pointer;
+}
+
+.cell{
+    background: #63ACBD;
+}
+#travel{
+    background:url(fotos/Travel.png) center no-repeat; background-size: 100% 100%;
+}
+#decord{
+    background:url(fotos/decor.png) center no-repeat; background-size: 100% 100%;
+}
+#beauty{
+    background:url(fotos/Beauty.png) center no-repeat; background-size: 100% 100%;
+}
+#haircare{
+    background:url(fotos/Haircare.png) center no-repeat; background-size: 100% 100%;
+}
+#sports{
+    background:url(fotos/Sports.png) center no-repeat; background-size: 100% 100%;
+}
+#fashion{
+    background:url(fotos/Fashion.png) center no-repeat; background-size: 100% 100%;
+}
+#food{
+    background:url(fotos/Food.png) center no-repeat; background-size: 100% 100%;
+}
+#health{
+    background:url(fotos/Health.png) center no-repeat; background-size: 100% 100%;
+}
+#comedy{
+    background:url(fotos/Comedy.png) center no-repeat; background-size: 100% 100%;
+}
+
+#maren{
+    position:absolute;
+    background:url(fotos/maren.png) center no-repeat; background-size: 100% 100%;
+    top:25%;
+    left:10%;
+}
+
+#lisamarie{
+    position:absolute;
+    background:url(fotos/lisamarie.png) center no-repeat; background-size: 100% 100%;
+    top:25%;
+    left:45%;
+}
+
+#millane{
+    position:absolute;
+    background:url(fotos/millane.png) center no-repeat; background-size: 100% 100%;
+    top:25%;
+    left:80%;
+}
+
+#aboutu{
+    position:absolute;
+    background:url(fotos/Aboutu.png) center no-repeat; background-size: 100% 100%;
+    top:25%;
+    left:10%;
+}
+
+#NAKD{
+    position:absolute;
+    background:url(fotos/NAKD.png) center no-repeat; background-size: 100% 100%;
+    top:25%;
+    left:45%;
+}
+
+#W2S{
+    position:absolute;
+    background:url(fotos/W2S.png) center no-repeat; background-size: 100% 100%;
+    top:25%;
+    left:80%;
+}
+#calculatesuggs{
+position: absolute;
+width: 200px;
+height: 80px;
+left: 20px;
+top: 900px;
+border-color: black;
+border-width: 5px;
+border-radius: 35px;
+background: #63ACBD;
+}
+#calculatesuggs:hover{
+border-color: white;
+border: 2px solid white;
+border-width: 5px;
+cursor: pointer;
+}
+#calculatesuggs{
+    font-weight: 500px;
+}
+#inflname{
+    box-sizing: border-box;
+    position: absolute;
+    width: 484px;
+    height: 94px;
+    left: -55px;
+    top: 138px;
+    background-color: #1D3352;
+    border-radius: 74px;
+}
+#AboutInfluencer{
+    position:absolute;
+    left:-15px;
+    top:250px;
+    width:80%;
+    height:200px;
+    background-color: #1D3352;
+    border-radius: 25px;
+}
+#stats{
+    position:absolute;
+    left:-15px;
+    top:500px;
+    width:80%;
+    height:200px;
+    background-color: #1D3352;
+    border-radius: 25px;
+}
+#textinflname{
+    position: absolute;
+    color: white;
+    top:-10px;
+    left:110px;
+    font-size: 35px;
+    font-weight: 900;
+}
+#aboutinflmaren{
+    position:absolute;
+    top:25px;
+    height:150px;
+    width:150px;
+}
+#aboutheader{
+    position:absolute;
+    color:white;
+    left:200px;
+    top:25px;
+    text-decoration:underline;
+}
+#abouttext{
+    position:absolute;
+    color:white;
+    width:80%;
+    left:200px;
+    top:55px;
+}
+#iwtwwy{
+    position:absolute;
+    width:200px;
+    height:200px;
+    border-radius: 100%;
+    left:85%;
+    border:none;
+    background-color: #63ACBD;
+    color:white;
+    font-size: 37px;
+}
+#iwtwwy:hover{
+    border-color: white;
+    border: 2px solid white;
+    border-width: 5px;
+    cursor: pointer;
+
+}
+#statslist{
+    position: absolute;
+    color: white;
+    font-size: 37px;
+    font-family: 'Inria Sans';
+    left:20px;
+}
+#aboutupage{
+    position: absolute;
+    height:100%;
+    width: 400px;
+}
+#marenshow{
+
+position:absolute;
+height:100%;
+width:450px;
+}
+#ITSAMATCH{
+    box-sizing: border-box;
+    position: absolute;
+    width: 800px;
+    height: 94px;
+    left: 28%;
+    top: 300px;
+    background-color: #1D3352;
+    border-radius: 74px;
+}
+#ITSAMATCH p{
+    position:absolute;
+    color:white;
+    font-size: 40px;
+    font-weight: 400;
+    top:-20px;
+    left:36%;
+}
+.flex-container{
+    width:100px;
+    height:20px;
+    top:610px;
+    left:46.7%;
+}
+
+#matchaboutu{
+position: absolute;
+width: 200px;
+height: 200px;
+left: 44%;
+top: 400px;
+border-radius: 100%;
+}
+#Infobox{
+    position:absolute;
+    left:28%;
+    top: 700px;
+    height:350px;
+    width:800px;
+    border-radius: 25px;
+    background-color:#7EDAE6;
+}
+#info{
+    position:absolute;
+    color:white;
+    left:0;
+    top: 70px;
+    height:95%;
+    width:95%;
+    margin-left: 5px;
+    margin-right: 15px;
+    font-size: 20px;
+}
+#Infobox h1{
+    position:absolute;
+    left:28%;
+    text-decoration-line:underline;
+}
+
+#otheroptions{
+    box-sizing: border-box;
+    position: absolute;
+    width: 484px;
+    height: 94px;
+    left: -50px;
+    top: 1100px;
+    background-color: #1D3352;
+    border-radius: 74px;
+}
+#otheroptions p{
+    position:absolute;
+    color:white;
+    font-size: 40px;
+    font-weight: 400;
+    top:-20px;
+    left:28%;
+}
+#rhode{
+position: absolute;
+width: 200px;
+height: 200px;
+top: 1300px;
+left:5%;
+}
+
+#nocsm{
+position: absolute;
+width: 200px;
+height: 200px;
+top: 1300px;
+left:25%;
+}
+
+#kyliecos{
+position: absolute;
+width: 200px;
+height: 200px;
+top: 1300px;
+left:45%;
+}
+
+#infocategories{
+position: absolute;
+width: 500px;
+height: 250px;
+left: 80%;
+top: 450px;
+background: #63ACBD;
+border-radius: 30px;
+opacity:0.9;
+}
+#infocategoriestext{
+position:absolute;
+color:white;
+left:40px;
+width:60%;
+height: 100%;
+font-size: 30px;
+}
+#infomatch{
+position: absolute;
+width: 500px;
+height: 250px;
+left: 80%;
+top: 750px;
+background: #63ACBD;
+border-radius: 30px;
+opacity:0.9;
+}
+#infomatchtext{
+position:absolute;
+color:white;
+left:40px;
+width:60%;
+height: 100%;
+font-size: 30px;
+}
+
+

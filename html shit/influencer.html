@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+            body {background-color: rgb(1, 19, 61);}
+            h1 {color: rgb(255, 255, 255);}
+            p {color: rgb(0, 0, 0);}
+
+            .sugginfl{
+            width:200px;
+            height: 200px;
+            border:none;
+            padding-top: 200px;
+            }
+            .sugginfl:hover{
+              border-color: black;
+              border: 2px solid black;
+              border-width: 5px;
+              cursor: pointer;
+              border-radius: 25px;
+            }
+    </style>
+    <link rel="stylesheet" href="home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="func.js"></script>
+</head>
+
+<body>
+<header> 
+    
+    <button class="headerbutton home" onclick="window.location.href = 'home.html';">Home</button, >
+            <button class="headerbutton aboutus">About us</button>
+            <button class="headerbutton contactus">Contact us</button>
+            <textarea id="text" name="text" cols="20" rows="1" placeholder="Influencer suchen"></textarea> 	
+        <div id="ecl1"> </div>
+        <div id="ecl2"> </div>
+        <div id="ecl3"> </div>
+        <div id="ecl4"> </div>
+        <div id="ecl5"> </div>
+        <div id="ecl6"> </div>
+        <div id="ecl7"> </div>
+        <div id="ecl8"> </div>
+        
+        <div id="headingib"></div>
+        <p id="headinfl"> INFLUENCERS </p> 
+
+      
+        <section id="buttonspanel"> 
+         
+
+            <div class="grid">
+                <div><button class="picbtn" id="travel" onclick="changeborder(this)">Travel</button></div>
+                <div><button class="picbtn" id="decord" onclick="changeborder(this)">Decor</button></div>
+                <div><button class="picbtn" id="beauty" onclick="changeborder(this)">Beauty</button></div>
+                <div id="test"><button class="picbtn" id="haircare" onclick="changeborder(this)">Haircare</button></div>
+                <div><button class="picbtn" id="sports" onclick="changeborder(this)">Sports</button></div>
+                <div><button class="picbtn" id="fashion" onclick="changeborder(this)">Fashion</button></div>
+                <div><button class="picbtn" id="food" onclick="changeborder(this)">Food</button></div>
+                <div><button class="picbtn" id="health" onclick="changeborder(this)">Health</button></div>
+                <div><button class="picbtn" id="comedy" onclick="changeborder(this)">Comedy</button></div>  
+              </div>
+          </section>
+
+          <section id="infocategories">
+            <p id="infocategoriestext"> based on the chosen categories the algorithm will configure perfect matches </p>
+            </section>
+        <button id="calculatesuggs"><p id="calcsuggst"> SHOW MY SUGGESTIONS </p></button>
+</header>
+ 
+<section id="banner2">
+    <p id="topsugges">TOP SUGGESTIONS FOR YOUR BRAND</p>
+    
+    <button class="sugginfl" id="maren" onclick="window.location.href = 'influencerexample.html';" hidden><p>@marenwolf</p></button>
+    <button class="sugginfl" id="lisamarie" hidden><p>@lisamarie_schiffner</p></button>
+    <button class="sugginfl" id="millane" hidden><p>@millanefriesen</p></button>
+
+
+    <script>
+        const showImageButton = document.getElementById("calculatesuggs");
+        const myImage1 = document.getElementById("maren");
+        const myImage2 = document.getElementById("lisamarie");
+        const myImage3 = document.getElementById("millane");
+        showImageButton.addEventListener("click", () => {
+        myImage1.hidden = !myImage1.hidden;
+        myImage2.hidden = !myImage2.hidden;
+        myImage3.hidden = !myImage3.hidden;
+        });
+    </script>
+</section>
+
+<footer id="footer"> 
+
+    <a href="#" class="fa fa-facebook"></a>
+
+</footer>
+</body>
+
+
+</html>
