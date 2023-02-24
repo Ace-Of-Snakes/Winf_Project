@@ -4,6 +4,9 @@
     <link rel="stylesheet" href="home.css">
     <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300&display=swap" rel="stylesheet">
     <script type="text/javascript" src="func.js"></script>
+    <style>
+        html, body {margin: 0; height: 100%;overflow-x: hidden;}
+    </style>
 </head>
 
 <body>
@@ -47,7 +50,7 @@
           <section id="infocategories">
             <p id="infocategoriestext"> based on the chosen categories the algorithm will configure perfect matches </p>
             </section>
-        <button id="calculatesuggs"><p id="calcsuggst"> SHOW MY SUGGESTIONS </p></button>
+        <button id="calculatesuggs"><p id="calcsuggst" onclick="document.getElementById('banner3').scrollIntoView()"> SHOW MY SUGGESTIONS </p></button>
 </header>
  
 <section id="banner3">
@@ -70,6 +73,12 @@
         });
     </script>
 </section>
+<footer id="footer"> 
+    <p id="copyright-text">© 2023 by More 2 Sea Marketing</p>
+    <button id="footertext" onclick="window.scroll(0, 0);">Recalibrate Suggestions</button>
+
+
+</footer>
 </body>
 
 
