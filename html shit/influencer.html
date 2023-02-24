@@ -1,25 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-            body {background-color: rgb(1, 19, 61);}
-            h1 {color: rgb(255, 255, 255);}
-            p {color: rgb(0, 0, 0);}
-
-            .sugginfl{
-            width:200px;
-            height: 200px;
-            border:none;
-            padding-top: 200px;
-            }
-            .sugginfl:hover{
-              border-color: black;
-              border: 2px solid black;
-              border-width: 5px;
-              cursor: pointer;
-              border-radius: 25px;
-            }
-    </style>
     <link rel="stylesheet" href="home.css">
     <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300&display=swap" rel="stylesheet">
     <script type="text/javascript" src="func.js"></script>
@@ -31,7 +12,9 @@
     <button class="headerbutton home" onclick="window.location.href = 'home.html';">Home</button, >
             <button class="headerbutton aboutus">About us</button>
             <button class="headerbutton contactus">Contact us</button>
-            <textarea id="text" name="text" cols="20" rows="1" placeholder="Influencer suchen"></textarea> 	
+            <button class="headerbutton login">Account</button>
+            <button class="headerbutton influencers">Influencers Section</button>
+            <!-- <textarea id="text" name="text" cols="20" rows="1" placeholder="Influencer suchen"></textarea> 	 -->
         <div id="ecl1"> </div>
         <div id="ecl2"> </div>
         <div id="ecl3"> </div>
@@ -42,7 +25,7 @@
         <div id="ecl8"> </div>
         
         <div id="headingib"></div>
-        <p id="headinfl"> INFLUENCERS </p> 
+
 
       
         <section id="buttonspanel"> 
@@ -67,7 +50,7 @@
         <button id="calculatesuggs"><p id="calcsuggst"> SHOW MY SUGGESTIONS </p></button>
 </header>
  
-<section id="banner2">
+<section id="banner3">
     <p id="topsugges">TOP SUGGESTIONS FOR YOUR BRAND</p>
     
     <button class="sugginfl" id="maren" onclick="window.location.href = 'influencerexample.html';" hidden><p>@marenwolf</p></button>
@@ -87,12 +70,6 @@
         });
     </script>
 </section>
-
-<footer id="footer"> 
-
-    <a href="#" class="fa fa-facebook"></a>
-
-</footer>
 </body>
 
 

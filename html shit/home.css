@@ -2,15 +2,26 @@
 h1,h2,h3,h4,h5,h6,p,button,textarea{
     font-family: 'Inria Sans';
 }
+@font-face {
+    font-family: "Touch of Nature";
+    src: url('touch-of-nature-font/touchofnature.ttf') format('truetype');
+    font-weight: lighter;
+    font-style: normal;
+}
 h1{
-    font-size: 200px;
+    font-family: "Touch of Nature";
+    font-size: 150px;
     font-weight: 700;
     line-height: 48px;
+    color: rgba(255, 255, 255, 0.815);
+}
+h2 {
+    font-size: 28px;
     color: rgb(255, 255, 255);
 }
 body {
-    background-color: rgb(1, 19, 61);
-    height : 100%;
+    background-color: rgb(10, 11, 46);
+    height : 100vh;
 }
 p {color: rgb(0, 0, 0);}
 header{
@@ -47,12 +58,13 @@ height: 100px;
 .headerbutton {
     border: none;
     border-radius: 105px;
-    background-color: rgb(1, 19, 61);;
+    background-color: rgb(10, 11, 46);
     color: rgb(255, 255, 255);
-    padding: 14px 28px;
+    padding: 14px 18px;
     font-size: 20px;
     cursor: pointer;
     font-weight: bold;
+    top: 1%
     }
 .headerbutton:hover{
 border-radius: 25px;
@@ -60,16 +72,16 @@ border: 2px solid #84cede;
 }
 .home{
     position:absolute;
-    left:60%;
+    left:73.5%;
 }
 .aboutus{
     position:absolute;
-    left:70%;
+    left:79%;
 }
 
 .contactus{
     position:absolute;
-    left:80%;
+    left:85.5%;
 }
 /*
 .contactus:active, .contactus:focus
@@ -79,7 +91,7 @@ border: 2px solid #84cede;
 */
 .login{
     position:absolute;
-    left:90%;
+    left:92.5%;
    
 }
 
@@ -91,7 +103,7 @@ border: 2px solid #84cede;
     position: absolute;
     width: 277px;
     height: 57px;
-    left: 6%;
+    left: 15%;
     top: 651px;
     border-radius: 105px;
     opacity:1;
@@ -111,7 +123,7 @@ border: 2px solid #84cede;
     position: absolute;
     width: 277px;
     height: 57px;
-    left: 24%;
+    left: 32%;
     top: 651px;
     border-radius: 105px;
     opacity:1;
@@ -137,9 +149,9 @@ border: 2px solid #84cede;
 
 #überschrift{
 position: absolute;
-width: 562px;
+width: fit-content;
 height: 134px;
-left: 20%;
+left: 15%;
 top: 268px;
 /*font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;*/
 }
@@ -147,8 +159,8 @@ top: 268px;
 position: absolute;
 width: 562px;
 height: 134px;
-left: 21%;
-top: 500px;
+left: 15%;
+top: 470px;
 color: white;
 }
 #banner1{
@@ -170,6 +182,13 @@ height: 40%;
 left: 0px;
 top: 160%;
 background: #FFFFFF;
+}
+#banner3{
+position: absolute;
+width: 100%;
+height: 40%;
+top: 80%;
+background-color: white;
 }
 #h6{
     position: absolute;
@@ -376,7 +395,16 @@ background: #FFFFFF;
     left:80%; 
     top: 35%; 
 }
-
+.bubble-hover{
+    position: absolute;
+    width: 296px;
+    height: 12%;
+    left: 10%;
+    top: 60%;
+    opacity: 1;
+    background: #1D3352;
+    border-radius: 40px;
+}
 #ecl1{
 position: absolute;
 width: 346.11px;
@@ -387,6 +415,26 @@ border-radius: 100%;
 background: radial-gradient(72.71% 75.23% at 77.47% 91.48%, rgba(11, 35, 85, 0.04) 8.85%, rgba(88, 117, 145, 0.157) 83.33%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 transform: matrix(1, -0.02, 0.02, 1, 0, 0);
 z-index: -1;
+}
+.bubble_class {
+    position: absolute;
+    width: 296px;
+    height: 12%;
+    left: 10%;
+    top: 60%;
+    opacity: 1;
+    background: #1D3352;
+    border-radius: 40px;
+}
+.bubble_class:hover {
+    background: radial-gradient(72.71% 75.23% at 77.47% 91.48%, rgba(11, 35, 85, 0.04) 8.85%, rgba(88, 117, 145, 0.157) 83.33%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    transform: matrix(1, -0.02, 0.02, 1, 0, 0);
+    z-index: -1;
+    box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 100%;
+    transition: 0.5s;
+    /* revert back if mouse goes off with animation */
+
 }
 #ecl2{
 position: absolute;
@@ -472,35 +520,21 @@ transform: rotate(-1.41deg);
 position: absolute;
 width: 700px;
 height: 550px;
-left: -3px;
-top: 300px;
+left: 5%;
+top: 15%;
 background: #63ACBD;
 border-radius: 30px;
 }
-#headingib{
-    box-sizing: border-box;
+#header_inf{
+    border: none;
+    border-radius: 105px;
+    background-color: rgb(10, 11, 46);
+    color: rgb(255, 255, 255);
+    padding: 14px 18px;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bold;
     position: absolute;
-    width: 484px;
-    height: 94px;
-    left: -91px;
-    top: 138px;
-    border: 1px solid #8DF7FF;
-    border-radius: 74px;
-
-}
-#headinfl{
-    position: absolute;
-    width: 200px;
-    height: 40px;
-    left: 51px;
-    top: 135px;
-    font-family: 'Inria Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 33px;
-    line-height: 40px;
-    /* identical to box height */
-    color: #8DF7FF;
 }
 #headinbr{
     position: absolute;
@@ -520,7 +554,7 @@ border-radius: 30px;
 #topsugges{
 
     position: absolute;
-    top:0%;
+    top:50%;
     font-family: 'Inria Sans';
     font-style: normal;
     font-weight: 400;
@@ -529,6 +563,9 @@ border-radius: 30px;
 }
 
 .grid {
+    position:absolute;
+    left: 20%;
+    top: 10px;
     display: grid;
     gap: 80px;
     grid-template-columns: 100px 100px 100px;
@@ -634,11 +671,12 @@ padding-top: 100px;
     left:80%;
 }
 #calculatesuggs{
+color: white;
 position: absolute;
 width: 200px;
 height: 80px;
-left: 20px;
-top: 900px;
+left: 50%;
+top: 50%;
 border-color: black;
 border-width: 5px;
 border-radius: 35px;
@@ -652,6 +690,7 @@ cursor: pointer;
 }
 #calculatesuggs{
     font-weight: 500px;
+    color: white;
 }
 #inflname{
     box-sizing: border-box;
@@ -850,8 +889,8 @@ left:45%;
 position: absolute;
 width: 500px;
 height: 250px;
-left: 80%;
-top: 450px;
+left: 50%;
+top: 15%;
 background: #63ACBD;
 border-radius: 30px;
 opacity:0.9;

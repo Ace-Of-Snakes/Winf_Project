@@ -1,14 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
-
-
-
-
-body {
-    font-family: 'Inria Sans';
-  height: 100vh;
-}
-
 a {
   color: #92badd;
   display:inline-block;
@@ -32,6 +23,7 @@ h2 {
   flex-direction: column; 
   justify-content: center;
   width: 100%;
+  /* height: 100%; */
   min-height: 100%;
   padding: 20px;
 }
@@ -41,20 +33,24 @@ h2 {
   border-radius: 10px 10px 10px 10px;
   background: #fff;
   padding: 30px;
-  width: 90%;
-  max-width: 450px;
+  width: 100%;
+  height: 90%;
+  max-width:25%;
+  /* max-height: 50%; */
   position: relative;
   padding: 0px;
   -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   text-align: center;
+  
 }
 
 #formFooter {
-  background-color: #f6f6f6;
+  background-color: white;
   border-top: 1px solid #dce8f1;
   padding: 25px;
   text-align: center;
+  height: 2%;
   -webkit-border-radius: 0 0 10px 10px;
   border-radius: 0 0 10px 10px;
 }
@@ -70,18 +66,29 @@ h2.active {
 
 #login{
     font-family: 'Inria Sans';
-
+    font-size: 25px;
+    color:white;
+    background-color: white;
+    border-radius: 6px;
+    border-width: 3px;
 }
 
 #password{
     font-family: 'Inria Sans';
+    font-size: 25px;
+    color:white;
+    background-color: white;
+    border-radius: 6px;
+    border-width: 3px;
 
 }
 #loginbtn{
     font-family: 'Inria Sans';
-    background-color: none;
+    font-size: 20px;
+    color:white;
+    background-color: #5fbae9;
     border-color: #5fbae9;
-    border-radius: 10px;
+    border-radius: 6px;
     border-width: 3px;
 }
 
