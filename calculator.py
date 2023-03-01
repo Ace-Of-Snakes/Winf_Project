@@ -138,4 +138,4 @@ def calculate_statistics(filepath: str, plot:bool=False):
 
     return emoji_sentiment, word_sentiment, list(reversed(like_engagement_ratios)), list(reversed(comm_engagement_ratios))
 if __name__ == "__main__":
-    calculate_statistics("profiles/timo.wacke.json", plot=True)
+    calculate_statistics("profiles/jonasroeber.json", plot=True)
