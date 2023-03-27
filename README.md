@@ -26,4 +26,4 @@ To use this software, you must have the following installed on your system:
 4. Once the scraping is complete, the software will calculate the reach, engagement rate, emoji sentiment, and comment sentiment for the given account
 
 ### Conclusion
-This software is designed to be easy to use and highly effective. If you have any questions or issues with the software, please do not hesitate to contact the developers
+This software is designed to be easy to use. If you have any questions or issues with the software, please do not hesitate to contact the developers
