@@ -8,7 +8,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 # Load the German version of the VADER sentiment analyzer
 analyzer = SentimentIntensityAnalyzer(lexicon_file="GERVaderLexicon.txt")
 
-def get_sentiment(word, analyzer):
+def get_sentiment(word, analyzer)->float:
     """Returns the sentiment of a word as a float between -1 and 1"""
     try:
         return analyzer.polarity_scores(word).get('compound', 0.0)
@@ -37,15 +37,15 @@ def get_reach_engagement(post, followers)->tuple:
     engagement_ratio = reach/followers
     return reach, engagement_ratio
 
-def get_number_of_comments(post,followers)->float:
+def get_number_of_comments(post, followers)->float:
     """Returns the number of comments per follower"""
     return len(post["text"]["comments"].keys())/followers
 
-def get_hashtags(post):
+def get_hashtags(post)->list:
     hashtags = re.findall(r"#\w+", post["text"]["description"])
     return hashtags
 
-def get_words(post):
+def get_words(post)->tuple:
     word_keys = post["text"]["comments"].keys()
     words = ""
     for key in word_keys:
@@ -54,7 +54,8 @@ def get_words(post):
     words = re.findall(r"\w+", words)
     return words, emojis
 
-def calculate_statistics(filepath: str, plot:bool=False):
+def calculate_statistics(filepath: str, plot:bool=False)->tuple:
+    
     global df
     # Load the emoji sentiment data
     df = pd.read_csv("ressources/Emoji_Sentiment_Data_v1.0.csv")
@@ -137,5 +138,6 @@ def calculate_statistics(filepath: str, plot:bool=False):
         plt.show()
 
     return emoji_sentiment, word_sentiment, list(reversed(like_engagement_ratios)), list(reversed(comm_engagement_ratios))
+
 if __name__ == "__main__":
     calculate_statistics("profiles/jonasroeber.json", plot=True)

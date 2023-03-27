@@ -1,5 +1,18 @@
 import numpy as np
-def scoring_algorithm(sentiment1, sentiment2,values1,values2,top_industries, city_val):
+def scoring_algorithm(sentiment1: list, sentiment2: list, values1: list, values2: list , top_industries: list, city_val: float)->dict:
+    """This function calculates the final score for each industry
+
+    Args:
+        sentiment1 (list): list of emoji sentiment values
+        sentiment2 (list): list of word sentiment values
+        values1 (list): list of like engagement ratios
+        values2 (list): list of comment engagement ratios
+        top_industries (list): list of top industries and their values
+        city_val (float): value of city in reach points
+
+    Returns:
+        dict: dict of final scores for each industry
+    """
 
     # get all variables and reformat them to be used in the algorithm
     emoji_sentiment = sentiment1[2]

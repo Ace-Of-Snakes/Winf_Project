@@ -6,3 +6,4 @@ def evaluate_city(city):
         if city in df["City"][i]:
             if int(re.sub(",","", df["2021 estimate"][i])) > 500000:
                 return 0.3
+    return 0.0
